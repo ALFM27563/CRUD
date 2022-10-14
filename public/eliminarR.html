@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/titulo.css">
+    <title>Eliminar Receta</title>
+</head>
+<body>
+    <a href="index.html"><button class="btn purple">↩</button></a>
+    <div class="input-text">
+        <p class="message"> ❌Eliminar receta❌  &nbsp;<span></span></p>
+    </div>
+    <center>
+    <table id="tabla-recetas" class="tabla">
+        <thead>
+            <th>No. Receta</th>
+            <th>Nombre</th>
+            <th>Ingredientes</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</center>
+    <div id="grupo1">
+<button onclick="llenarTabla(),ocultar('grupo1')" class="btn blue">Ver Recetas guardadas</button>
+</div>
+<form action="eliminarReceta" method="post">
+Pon el número de la receta que deseas Eliminar<br><input type="number" name="id" max="1000" min="1" style=" width:50px" >
+<button class="btn red">Eliminar</button>
+</form>
+
+<script type="text/javascript">
+    function llenarTabla(req,res){
+        url="http://localhost:3000/recetas";
+        fetch(url).then((res)=>res.json()).then((recetas)=>{
+            let tablaRecetas=document.querySelector("#tabla-recetas tbody");
+            for (const i of recetas) {
+                let tr="<tr> <td>"+i.num_receta + " </td><td>" +i.nom_receta+"</td><td>"+i.ing_receta+"</td> </tr>"
+                tablaRecetas.innerHTML+=tr;
+                
+            }
+        })
+
+    }
+    
+function ocultar(id){
+    var elemento = document.getElementById(id);
+    elemento.style.display = "none";
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/titulo.css">
+    <title>Agregar receta</title>
+</head>
+<body>
+    <a href="index.html"><button class="btn purple">↩</button></a>
+    <div class="input-text">
+        <p class="message">➕Agregar Receta📝<span></span></p>
+    </div>
+    <form action="agregarReceta" method="post">
+    Nombre de la receta:<br><input type="text" name="nombreR" maxlength="30" placeholder="Tacos dorados de pollo.." required onkeypress="return check(event)">
+    <br>
+    Numero de receta:<br><input type="number" name="id" min="1" max="1000" maxlength="4" id="num" required>
+    <br>
+    Ingredientes:<br><textarea  name="ingredientes" placeholder="1kg de lechuga..." onkeypress="return check(event)" style=" width:500px" required></textarea>
+    
+    
+    <br><button value="Agregar" class="btn green" >Agregar</button>
+    </form>
+    
+<div class="sport-table-wager" id="grupo1">
+    <br><button onclick="llenarTabla(),ocultar('grupo1')" class="btn blue">Recetas agregadas recietemente</button>
+</div>
+    <center><table id="tabla-recetas" class="tabla">
+        <thead>
+            <th>No. Receta</th>
+            <th>Nombre</th>
+            <th>Ingredientes</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    </center>
+<script>
+function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patrón de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z0-9/ñ ]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+
+function ocultar(id){
+    var elemento = document.getElementById(id);
+    elemento.style.display = "none";
+}
+
+    function llenarTabla(req,res){
+        url="http://localhost:3000/recetas";
+        fetch(url).then((res)=>res.json()).then((recetas)=>{
+            let tablaRecetas=document.querySelector("#tabla-recetas tbody");
+            for (const i of recetas) {
+                let tr="<tr><td>"+i.num_receta + " </td><td>" +i.nom_receta+"</td><td>"+i.ing_receta+"</td></tr>"
+                tablaRecetas.innerHTML+=tr;
+            }
+        })
+
+    }
+    
+</script>
+    
+</body>
+</html>

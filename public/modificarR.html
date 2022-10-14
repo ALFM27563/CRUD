@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/button.css">
+    <link rel="stylesheet" href="css/titulo.css">
+    <title>Eliminar Receta</title>
+</head>
+<body>
+    <a href="index.html"><button class="btn purple">↩</button></a>
+    <div class="input-text">
+        <p class="message"> 📝Modificar Receta 📝&nbsp;<span></span></p>
+    </div>
+    <center>
+    <table id="tabla-recetas" class="tabla">
+        <thead>
+            <th>No. Receta</th>
+            <th>Nombre</th>
+            <th>Ingredientes</th>
+            <th>Acción</th>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</center>
+<div class="sport-table-wager" id="grupo1">
+<button onclick="llenarTabla(),ocultar('grupo1')" class="btn blue">Ver Recetas guardadas</button>
+</div>
+<form action="mReceta2" method="post">
+    <br><br>
+    <h2>Cosas que desees cambiar</h2>
+
+Número de receta:
+
+<br><input type="text" name="id" required id="i0" style="width:20px" readonly>
+
+<br>Nombre de la receta:
+<br><input type="text" name="nom" required id="i1" onkeypress="return check(event)">
+
+<br>Ingredientes de la receta:
+<br>
+<textarea name="ing" id="i2" required onkeypress="return check(event)" style=" width:200px"></textarea>
+<br>
+<br><button class="btn green">Guardar Cambios</button>
+</form>
+
+<script type="text/javascript">
+    var num;
+    var receta;
+    var nombre;
+    var f=1;
+    var j=1;
+    function llenarTabla(req,res){
+        url="http://localhost:3000/recetas";
+        fetch(url).then((res)=>res.json()).then((recetas)=>{
+            let tablaRecetas=document.querySelector("#tabla-recetas tbody");
+            for (const i of recetas) {
+                let tr="<tr id=f"+f+"> <td id="+j+">"+i.num_receta + " </td><td>" +i.nom_receta+"</td><td>"+i.ing_receta+"</td><td><button onclick='hola("+j+","+f+")'>📝</button> </td> </tr>";
+                    f+=1;
+                    j+=1;                           
+                    id2=i.idreceta
+                    console.log(id2)
+                tablaRecetas.innerHTML+=tr;
+            }
+        })
+
+    }
+    function hola(j,f){
+        console.log(j);
+        console.log(f);
+        let num=document.getElementById(1);
+        let of=document.getElementById("f"+f);
+        let ef=of.getElementsByTagName("td");
+        console.log(of);
+        console.log(ef);
+        for(let i=0; i<3;i++){
+            console.log(ef[i].innerHTML);
+            var h=ef[i].innerHTML
+            document.getElementById("i"+i).value=h;
+            
+        }
+        
+    }
+    function ocultar(id){
+    var elemento = document.getElementById(id);
+    elemento.style.display = "none";
+}
+    function check(e) {
+    tecla = (document.all) ? e.keyCode : e.which;
+
+    //Tecla de retroceso para borrar, siempre la permite
+    if (tecla == 8) {
+        return true;
+    }
+
+    // Patrón de entrada, en este caso solo acepta numeros y letras
+    patron = /[A-Za-z0-9/ñ ]/;
+    tecla_final = String.fromCharCode(tecla);
+    return patron.test(tecla_final);
+}
+</script>
+</body>
+</html>
+
+<!--<script type="text/javascript">
+    function llenarTabla(req,res){
+        url="http://localhost:3000/mReceta";
+        fetch(url).then((res)=>res.json()).then((mReceta)=>{
+            let tablaRecetas=document.querySelector("#tabla-recetas tbody");
+            for (const i of mReceta) {
+                let tr="<tr> <td>"+i.num_receta + " </td><td>" +i.nom_receta+"</td><td>"+i.ing_receta+"</td></tr>"
+                tablaRecetas.innerHTML+=tr;
+            }
+        })
+
+    }
+</script>-->
