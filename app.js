@@ -6,8 +6,6 @@ import cors from 'cors';
 //const express=require('express')
 //const cors=require("cors");
 const app=express();
-
-
 //Si vamos a usar cualquier otra base de datos hay que descargarlo de la misma manera que "npn install mysql --save"
 //const mysql=require('mysql')
 //Para parseo como en parseInt
@@ -90,8 +88,10 @@ app.post('/mReceta2',(req,res)=>{
         
     })
 });
-app.listen(3000,()=>{
-    console.log("Puerto escuchando en 3000")
-
+app.listen(PORT,()=>{
+    console.log("Puerto escuchando en: " + PORT)
 })
+/*app.listen(3000,()=>{
+    console.log("Puerto escuchando en 3000")
+*/
 //En el json ponemos "start":"node app.js"//
