@@ -3,6 +3,10 @@ import express from 'express';
 import bodyParser from "body-parser";
 import mysql from 'mysql';
 import cors from 'cors';
+import {
+     DB_USER, DB_PASSWORD, DB_HOST,
+     DB_NAME, DB_PORT 
+} from "./config.js"
 //const express=require('express')
 //const cors=require("cors");
 const app=express();
@@ -12,10 +16,11 @@ const app=express();
 //var bodyParser=require('body-parser')
 var con=mysql.createConnection({
 
-    host: 'localhost',
-    user: 'root',
-    password: 'n0m3l0',
-    database: 'prueba'
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    port: DB_PORT
     //La maestra descargó la extensión BlackBox porque Alan alto le dijo, pero creo que no les funcionó xd
 })
 
@@ -91,7 +96,8 @@ app.post('/mReceta2',(req,res)=>{
 app.listen(PORT,()=>{
     console.log("Puerto escuchando en: " + PORT)
 })
-/*app.listen(3000,()=>{
+/*
+app.listen(3000,()=>{
     console.log("Puerto escuchando en 3000")
 */
 //En el json ponemos "start":"node app.js"//
