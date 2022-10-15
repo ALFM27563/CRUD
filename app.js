@@ -1,11 +1,17 @@
+import {PORT} from "./config.js";
+import express from 'express';
+import bodyParser from "body-parser";
+import mysql from 'mysql';
+import cors from 'cors';
+//const express=require('express')
+//const cors=require("cors");
+const app=express();
 
-const express=require('express')
-const cors=require("cors");
-const app=express()
+
 //Si vamos a usar cualquier otra base de datos hay que descargarlo de la misma manera que "npn install mysql --save"
-const mysql=require('mysql')
+//const mysql=require('mysql')
 //Para parseo como en parseInt
-var bodyParser=require('body-parser')
+//var bodyParser=require('body-parser')
 var con=mysql.createConnection({
 
     host: 'localhost',
