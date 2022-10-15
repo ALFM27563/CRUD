@@ -55,7 +55,7 @@ Número de receta:
     var f=1;
     var j=1;
     function llenarTabla(req,res){
-        url="https://crud-production-e231.up.railway.app//recetas";
+        url="https://crud-production-e231.up.railway.app/recetas";
         fetch(url).then((res)=>res.json()).then((recetas)=>{
             let tablaRecetas=document.querySelector("#tabla-recetas tbody");
             for (const i of recetas) {
