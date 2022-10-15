@@ -36,7 +36,7 @@ Pon el número de la receta que deseas Eliminar<br><input type="number" name="id
 
 <script type="text/javascript">
     function llenarTabla(req,res){
-        url="http://localhost:3000/recetas";
+        url="https://crud-production-e231.up.railway.app/recetas";
         fetch(url).then((res)=>res.json()).then((recetas)=>{
             let tablaRecetas=document.querySelector("#tabla-recetas tbody");
             for (const i of recetas) {
