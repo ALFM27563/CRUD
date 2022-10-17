@@ -16,11 +16,11 @@ const app=express();
 //var bodyParser=require('body-parser')
 var con=mysql.createConnection({
 
-    host: "containers-us-west-97.railway.app",
-    user: 'root',
-    password: '1LSCmvCBqUuiiw7X6GiI',
-    database: "railway",
-    port: '6204'
+    host: DB_HOST,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_NAME,
+    port: DB_PORT
     //La maestra descargó la extensión BlackBox porque Alan alto le dijo, pero creo que no les funcionó xd
 })
 
