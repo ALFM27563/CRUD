@@ -42,7 +42,7 @@ app.post('/agregarReceta',(req,res)=>{
     let id=req.body.id
     con.query('Insert into receta (nom_receta, ing_receta,num_receta) values  ("'+nomR+'", "'+ingredientes+'","'+id+'")  ',(err,respuesta,fields)=>{
         if(err) return console.log('Error',err)
-        return res.send(index.html)
+        return res.send('<h1>La receta ha sido agregada  perfectamente</h1> <br><br><a href="index.html"><button>Volver a Inicio</button></a>')
 
     })  
 })
